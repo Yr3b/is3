@@ -612,7 +612,7 @@ p {
   font-weight: var(--font-semibold);
   max-width: 500px;
   width: 100%;
-  margin: 10% auto var(--space-10);
+  margin: 5% auto var(--space-10);
   background: rgba(255, 255, 255, 0.95);
   padding: var(--space-6) var(--space-8);
   border-radius: var(--radius-lg);
