@@ -58,8 +58,8 @@
   --secondary: var(--secondary-600);
   --accent: var(--accent-500);
   --text-primary: var(--neutral-900);
-  --text-secondary: var(--neutral-600);
-  --text-muted: var(--neutral-500);
+  --text-secondary: var(--neutral-800);
+  --text-muted: var(--neutral-600);
   --background: #ffffff;
   --background-pattern: radial-gradient(circle at 25% 25%, var(--primary-50) 0%, transparent 50%),
     radial-gradient(circle at 75% 75%, var(--secondary-50) 0%, transparent 50%);
@@ -203,11 +203,29 @@ h6 {
 h1 {
   font-size: var(--text-6xl);
   font-weight: var(--font-black);
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 50%, var(--accent-500) 100%);
+  background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b649 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.2),
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b649 100%);
+  filter: blur(20px);
+  opacity: 0.3;
+  z-index: -1;
 }
 
 h2 {
@@ -427,23 +445,24 @@ p {
   width: 100%;
   padding: var(--space-6);
   min-height: 160px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(99, 102, 241, 0.3);
   border-radius: var(--radius-lg);
   font-size: var(--text-base);
   font-family: inherit;
   line-height: 1.6;
   resize: vertical;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-sm);
+  color: var(--neutral-900);
+  box-shadow: var(--shadow-md);
+  font-weight: var(--font-medium);
 }
 
 .form-textarea::placeholder {
-  color: var(--text-muted);
+  color: var(--neutral-700);
   font-style: italic;
-  font-weight: var(--font-normal);
+  font-weight: var(--font-medium);
 }
 
 .form-textarea:focus {
@@ -575,11 +594,14 @@ p {
   padding: var(--space-24);
   text-align: center;
   min-height: 70vh;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .error-icon {
   font-size: var(--text-7xl);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-10);
   color: var(--error-500);
   animation: pulse 2s ease-in-out infinite;
 }
@@ -589,11 +611,15 @@ p {
   color: var(--error-500);
   font-weight: var(--font-semibold);
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  margin: 10% auto var(--space-10);
+  background: rgba(255, 255, 255, 0.95);
   padding: var(--space-6) var(--space-8);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(239, 68, 68, 0.2);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
 }
 
 @keyframes pulse {
@@ -621,14 +647,15 @@ p {
 
 /* Questionnaire Creative Design */
 .questionnaire-intro {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
   backdrop-filter: blur(20px);
   padding: var(--space-10);
   border-radius: var(--radius-2xl);
   margin-bottom: var(--space-16);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
 
 .questionnaire-intro::before {
@@ -642,7 +669,7 @@ p {
 }
 
 .questionnaire-intro p {
-  color: var(--primary-800);
+  color: var(--neutral-900);
   font-weight: var(--font-semibold);
   font-size: var(--text-lg);
   line-height: 1.7;
@@ -731,23 +758,64 @@ p {
   font-size: var(--text-base);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Responsive Design - Improved breakpoints */
+@media (max-width: 1200px) {
   .container {
-    padding: var(--space-6) var(--space-4);
+    max-width: 900px;
+  }
+
+  h1 {
+    font-size: var(--text-5xl);
+  }
+
+  .hero-description {
+    font-size: var(--text-xl);
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px;
+    padding: var(--space-6);
   }
 
   h1 {
     font-size: var(--text-4xl);
   }
 
-  h2 {
+  .hero-description {
+    font-size: var(--text-lg);
+    max-width: 500px;
+  }
+
+  .card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .btn-lg {
+    padding: var(--space-4) var(--space-8);
+    min-height: 58px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--space-4);
+  }
+
+  h1 {
     font-size: var(--text-3xl);
   }
 
+  h2 {
+    font-size: var(--text-2xl);
+  }
+
   .hero-description {
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     padding: var(--space-4) var(--space-6);
+    max-width: 100%;
   }
 
   .page-description {
@@ -755,91 +823,128 @@ p {
   }
 
   .btn-lg {
-    padding: var(--space-4) var(--space-8);
+    padding: var(--space-3) var(--space-6);
     font-size: var(--text-base);
-    min-height: 56px;
+    min-height: 52px;
   }
 
   .questionnaire-intro {
-    padding: var(--space-8);
+    padding: var(--space-6);
   }
 
   .hero-section {
-    padding: var(--space-16) 0;
+    padding: var(--space-12) 0;
   }
 
   .form-textarea {
-    min-height: 140px;
-    padding: var(--space-4);
+    min-height: 120px;
+    padding: var(--space-3);
   }
 
   .card-content {
-    padding: var(--space-8);
+    padding: var(--space-6);
+  }
+
+  .suggestions-container {
+    gap: var(--space-6);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .container {
-    padding: var(--space-4) var(--space-3);
+    padding: var(--space-3);
   }
 
   h1 {
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
+  }
+
+  h2 {
+    font-size: var(--text-xl);
   }
 
   .hero-description {
+    font-size: var(--text-sm);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .btn {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+    min-height: 48px;
+  }
+
+  .form-label {
+    font-size: var(--text-xs);
+  }
+
+  .form-textarea {
+    font-size: var(--text-sm);
+    padding: var(--space-2);
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+  }
+
+  .loading-text {
     font-size: var(--text-base);
+  }
+
+  .card {
+    border-radius: var(--radius-lg);
+  }
+
+  .card:hover {
+    transform: none;
   }
 }
 
-/* Utility Classes */
-.text-center {
-  text-align: center;
-}
-.text-left {
-  text-align: left;
-}
-.text-right {
-  text-align: right;
+/* Landscape mode adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero-section {
+    padding: var(--space-8) 0;
+  }
+
+  .loading-container,
+  .error-container {
+    min-height: 85vh;
+  }
+
+  .form-textarea {
+    min-height: 100px;
+  }
 }
 
-/* Spacing Utilities */
-.mb-0 {
-  margin-bottom: 0;
-}
-.mb-2 {
-  margin-bottom: var(--space-2);
-}
-.mb-4 {
-  margin-bottom: var(--space-4);
-}
-.mb-6 {
-  margin-bottom: var(--space-6);
-}
-.mb-8 {
-  margin-bottom: var(--space-8);
-}
-.mt-5 {
-  margin-top: var(--space-5);
-}
-.mt-8 {
-  margin-top: var(--space-8);
+/* Dark mode considerations */
+@media (prefers-color-scheme: dark) {
+  .hero-title::after {
+    opacity: 0.4;
+  }
+
+  .hero-description {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
-/* Accessibility */
-.btn:focus-visible,
-.form-textarea:focus-visible {
-  outline: 3px solid var(--primary-400);
-  outline-offset: 2px;
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  h1 {
+    background: none;
+    -webkit-text-fill-color: var(--primary-900);
+    text-shadow: none;
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+/* Save data */
+@media (prefers-reduced-data: reduce) {
+  .hero-section::before,
+  .loading-spinner::after,
+  .btn::before {
+    display: none;
   }
 }
 
